@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gym Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ==================================================
+         SIDEBAR
+    =================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>GYM<span>MS</span></h2>
+            <p>Management System</p>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" data-section="dashboardSection">
+                🏠 Dashboard
+            </button>
+
+            <button class="nav-item" data-section="membersSection">
+                👥 Members
+            </button>
+
+            <button class="nav-item" data-section="membershipsSection">
+                💳 Memberships
+            </button>
+
+            <button class="nav-item" data-section="trainersSection">
+                🏋 Trainers
+            </button>
+
+            <button class="nav-item" data-section="sessionsSection">
+                📅 Fitness Sessions
+            </button>
+
+            <button class="nav-item" data-section="bookingsSection">
+                📋 Bookings
+            </button>
+
+            <button class="nav-item" data-section="attendanceSection">
+                ✅ Attendance
+            </button>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ==================================================
+         MAIN CONTENT
+    =================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- ==================================================
+             DASHBOARD
+        =================================================== -->
+
+        <section id="dashboardSection" class="content-section active">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Gym Management System Overview</p>
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div>
+                        <h3>Total Members</h3>
+                        <p id="totalMembers">0</p>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">💳</div>
+                    <div>
+                        <h3>Active Memberships</h3>
+                        <p id="activeMemberships">0</p>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏋</div>
+                    <div>
+                        <h3>Total Trainers</h3>
+                        <p id="totalTrainers">0</p>
+                    </div>
+                </div>
+
+
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div>
+                        <h3>Total Sessions</h3>
+                        <p id="totalSessions">0</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Upcoming Fitness Sessions</h2>
+                    </div>
+
+                    <div id="sessionsContainer">
+                        <p class="empty-message">Loading sessions...</p>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <h2>Recent Members</h2>
+                    </div>
+
+                    <div id="membersContainer">
+                        <p class="empty-message">Loading members...</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             MEMBERS
+        =================================================== -->
+
+        <section id="membersSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Members</h1>
+                    <p>Manage gym members</p>
+                </div>
+
+                <button class="primary-btn" id="openMemberModal">
+                    + Add Member
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-toolbar">
+
+                    <input
+                        type="text"
+                        id="memberSearch"
+                        class="search-input"
+                        placeholder="Search members..."
+                    >
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                <th>Registration Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="membersTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             MEMBERSHIPS
+        =================================================== -->
+
+        <section id="membershipsSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Memberships</h1>
+                    <p>Manage member subscriptions</p>
+                </div>
+
+                <button class="primary-btn" id="openMembershipModal">
+                    + Add Membership
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Member</th>
+                                <th>Plan</th>
+                                <th>Duration</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="membershipsTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             TRAINERS
+        =================================================== -->
+
+        <section id="trainersSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Trainers</h1>
+                    <p>Manage gym trainers</p>
+                </div>
+
+                <button class="primary-btn" id="openTrainerModal">
+                    + Add Trainer
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Specialization</th>
+                                <th>Experience</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="trainersTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             FITNESS SESSIONS
+        =================================================== -->
+
+        <section id="sessionsSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Fitness Sessions</h1>
+                    <p>Manage gym training sessions</p>
+                </div>
+
+                <button class="primary-btn" id="openSessionModal">
+                    + Add Session
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Session</th>
+                                <th>Trainer</th>
+                                <th>Date</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Capacity</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="sessionsTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             BOOKINGS
+        =================================================== -->
+
+        <section id="bookingsSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Bookings</h1>
+                    <p>Manage fitness session bookings</p>
+                </div>
+
+                <button class="primary-btn" id="openBookingModal">
+                    + Add Booking
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Member</th>
+                                <th>Session</th>
+                                <th>Trainer</th>
+                                <th>Session Date</th>
+                                <th>Time</th>
+                                <th>Booking Date</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="bookingsTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ATTENDANCE
+        =================================================== -->
+
+        <section id="attendanceSection" class="content-section">
+
+            <div class="page-header">
+
+                <div>
+                    <h1>Attendance</h1>
+                    <p>Track member attendance</p>
+                </div>
+
+                <button class="primary-btn" id="openAttendanceModal">
+                    + Mark Attendance
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Booking</th>
+                                <th>Member</th>
+                                <th>Session</th>
+                                <th>Session Date</th>
+                                <th>Attendance Date</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="attendanceTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         ADD MEMBER MODAL
+    =================================================== -->
+
+    <div class="modal" id="memberModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Add Member</h2>
+
+                <button class="close-btn" data-close="memberModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="memberForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="memberName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="memberEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" id="memberPhone" required>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Gender</label>
+
+                        <select id="memberGender" required>
+
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="memberDOB">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Registration Date</label>
+                        <input type="date" id="memberRegistrationDate" required>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Status</label>
+
+                        <select id="memberStatus" required>
+
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button type="button"
+                            class="secondary-btn"
+                            data-close="memberModal">
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="primary-btn">
+                        Add Member
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADD MEMBERSHIP MODAL
+    =================================================== -->
+
+    <div class="modal" id="membershipModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Add Membership</h2>
+
+                <button class="close-btn" data-close="membershipModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="membershipForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Member</label>
+
+                        <select id="membershipMember" required>
+
+                            <option value="">
+                                Select Member
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Membership Plan</label>
+
+                        <select id="membershipPlan" required>
+
+                            <option value="">
+                                Select Plan
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Start Date</label>
+
+                        <input
+                            type="date"
+                            id="membershipStartDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>End Date</label>
+
+                        <input
+                            type="date"
+                            id="membershipEndDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Payment Amount</label>
+
+                        <input
+                            type="number"
+                            id="membershipAmount"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Payment Status</label>
+
+                        <select
+                            id="membershipPaymentStatus"
+                            required
+                        >
+
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        data-close="membershipModal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Add Membership
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADD TRAINER MODAL
+    =================================================== -->
+
+    <div class="modal" id="trainerModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Add Trainer</h2>
+
+                <button class="close-btn" data-close="trainerModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="trainerForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                            type="text"
+                            id="trainerName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="email"
+                            id="trainerEmail"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input
+                            type="text"
+                            id="trainerPhone"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Specialization</label>
+
+                        <input
+                            type="text"
+                            id="trainerSpecialization"
+                            placeholder="e.g. Strength Training"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Experience (Years)</label>
+
+                        <input
+                            type="number"
+                            id="trainerExperience"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        data-close="trainerModal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Add Trainer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADD SESSION MODAL
+    =================================================== -->
+
+    <div class="modal" id="sessionModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Add Fitness Session</h2>
+
+                <button class="close-btn" data-close="sessionModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="sessionForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Session Name</label>
+
+                        <input
+                            type="text"
+                            id="sessionName"
+                            placeholder="e.g. Morning Yoga"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Trainer</label>
+
+                        <select id="sessionTrainer" required>
+
+                            <option value="">
+                                Select Trainer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Session Date</label>
+
+                        <input
+                            type="date"
+                            id="sessionDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Start Time</label>
+
+                        <input
+                            type="time"
+                            id="sessionStartTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>End Time</label>
+
+                        <input
+                            type="time"
+                            id="sessionEndTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Capacity</label>
+
+                        <input
+                            type="number"
+                            id="sessionCapacity"
+                            min="1"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        data-close="sessionModal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Add Session
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADD BOOKING MODAL
+    =================================================== -->
+
+    <div class="modal" id="bookingModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Add Booking</h2>
+
+                <button class="close-btn" data-close="bookingModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="bookingForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Member</label>
+
+                        <select id="bookingMember" required>
+
+                            <option value="">
+                                Select Member
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Fitness Session</label>
+
+                        <select id="bookingSession" required>
+
+                            <option value="">
+                                Select Session
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Booking Date</label>
+
+                        <input
+                            type="date"
+                            id="bookingDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Booking Status</label>
+
+                        <select id="bookingStatus" required>
+
+                            <option value="Confirmed">
+                                Confirmed
+                            </option>
+
+                            <option value="Pending">
+                                Pending
+                            </option>
+
+                            <option value="Cancelled">
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        data-close="bookingModal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Add Booking
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADD ATTENDANCE MODAL
+    =================================================== -->
+
+    <div class="modal" id="attendanceModal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>Mark Attendance</h2>
+
+                <button class="close-btn" data-close="attendanceModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="attendanceForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Booking</label>
+
+                        <select id="attendanceBooking" required>
+
+                            <option value="">
+                                Select Booking
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Attendance Date</label>
+
+                        <input
+                            type="date"
+                            id="attendanceDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Status</label>
+
+                        <select id="attendanceStatus" required>
+
+                            <option value="Present">
+                                Present
+                            </option>
+
+                            <option value="Absent">
+                                Absent
+                            </option>
+
+                            <option value="Late">
+                                Late
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        data-close="attendanceModal">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Mark Attendance
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
